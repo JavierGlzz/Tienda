@@ -1,0 +1,80 @@
+*,*:after, *:before{
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.cargando {
+ background-color: lightblue;
+ height: 100%;
+ width: 100%;
+ position: fixed;
+ -webkit-transition: all 5s ease;
+ -o-transition: all 5s ease;
+ transition: all 5s;
+ z-index: 10000;
+}
+.carga{
+  border: 10px solid #fdb4b4;
+  border-top-color: #fdb4b4 ;
+  border-top-style: dotted;
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-animation: girar 2s linear infinite;
+  -o-animation: girar 2s linear infinite;
+  animation: girar 2s linear infinite;
+}
+
+@keyframes  girar {
+  from { transform: rotate(0deg);}
+  to { transform: rotate(360deg);}
+}
+/*-------------------------------*/
+:root{
+  font-family:  Arial, Helvetica, sans-serif;
+}
+#cabecera{
+  background: rgb(148, 146, 146);
+	color: white;
+  height: 80px;
+  border: 2px solid lightgreen;
+}
+#indice{
+  background: rgb(148, 146, 146);
+  height: 80px;
+  border: 2px solid rgb(3, 248, 3);
+  color: black;
+}
+
+.nav > li {
+  display: inline-block;
+  font-size: 18px;
+  float: left;
+  padding: 10px;
+}
+/*---------------------------------*/
+#mostrarProductos{
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 9px;
+  grid-gap: 1rem;
+  background-color: rgb(248, 233, 210);
+  grid-template-columns: repeat(auto-fit, 200px);
+}
+
+#mostrarProductos > p{
+  padding: 3;
+  background-color: lightblue;
+  font-size: 15px;
+  border: 1px solid lawngreen;
+}

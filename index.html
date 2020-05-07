@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda</title>
+  <link rel="stylesheet" href="/estilos.css" type="text/css">
+</head>
+<body>
+  <!--Animacion-->
+  <div class="cargando" id="cargar">
+    <div class="carga"></div>
+  </div>
+  <!--finAnimacion-->
+  <header id="cabecera">
+    <h2>TIENDA COVID19</h2>
+  </header>
+  <nav id="indice">
+    <ul class="nav">
+      <li>
+        <a href="" style="color: black;">PRODUCTOS</a>
+      </li>
+      <li>
+        <a href="/carro.html" style="color:black">CARRO</a>
+      </li>
+    </ul>
+    <br>
+    <br>
+  </nav>
+
+
+  <section>
+    <div id="mostrarProductos">
+    </div>
+  </section>
+  <!--SCRIPT--><!----><!----><!----><!----><!----><!---->
+  <script>
+//Animacion///////////////////////////////////////////////
+window.onload = function animacion(){
+    let traerCargando= document.getElementById('cargar');
+    traerCargando.style.visibility = 'hidden';
+    traerCargando.style.opacity= '0';
+}
+/////////////////////////////////////////////////////////
+//pedirApi//////////////////////////////////////////////
+    async function makeRequestProductos(){
+      let response = await fetch('http://demo6292426.mockable.io/products');
+      let dataProducto = await response.json();
+      console.log(dataProducto);
+      return dataProducto;
+    } 
+///////////////////////////////////////////////////////
+setTimeout(() => {
+  mostrarProducto()
+}, 2);
+    function mostrarProducto(dataProducto) {
+      makeRequestProductos().then(dataProducto => {
+        Object.values(dataProducto).forEach(
+        key => {
+          const parrafoDato = document.createTextNode(key.name + '   ' + key.price + '  ' + key.category);
+          const parrafo = document.createElement('p')
+          const boton = document.createElement('button')
+          boton.type = 'button'
+          parrafo.className = 'caja'
+          parrafo.id = 'pcaja'
+          parrafo.appendChild(parrafoDato)
+          mostrarProductos.appendChild(parrafo)
+        })
+      })
+    }
+
+  </script>
+</body>
+</html>
