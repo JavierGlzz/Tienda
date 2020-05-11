@@ -28,90 +28,36 @@
     </ul>
     <br>
     <br>
+    <section>
+      <div id="idCarro">
+        <ul id="pintarProductos">
+          <li id="listaProductos"></li>
+        </ul>
+      </div>
+    </section>
+  <section id="filtros">
+      <h4>Filtros</h4>
+      <label class="mdl" for="checkbox-1" onchange="filtarDatosMujer(this.value)">
+        <input type="checkbox" id="checkbox1">
+        <span class="mdl-checkbox__label">Mujer</span>
+      </label>
+      <label class="mdl" for="checkbox-2" onchange="filtarDatosHombre(this.value)">
+        <input type="checkbox" id="checkbox2">
+        <span class="mdl-checkbox__label">Hombre</span>
+      </label>
+      <label class="mdl" for="checkbox-3" onchange="filtarDatosJoven(this.value)">
+        <input type="checkbox" id="checkbox3">
+        <span class="mdl-checkbox__label">Joven</span>
+      </label>
+      <label class="mdl" for="checkbox-3" onchange="mostrarProducto(this.value)">
+        <input type="checkbox" id="checkbox4">
+        <span class="mdl-checkbox__label">Todos</span>
+      </label>
+    </section>
   </nav>
-
-  <section>
-    <div id="mostrarProductos">
-    </div>
-  </section>
-  <section>
-    <div id="idCarro">
-      <ul id="pintarProductos">
-        <li id="enviarProductos"></li>
-      </ul>
-    </div>
-  </section>
-  <!--SCRIPT-->
-  <script>
-var carro = []
-//Animacion///////////////////////////////////////////////
-window.onload = function animacion(){
-    let traerCargando= document.getElementById('cargar');
-    traerCargando.style.visibility = 'hidden';
-    traerCargando.style.opacity= '0';
-}
-//pedirApi//////////////////////////////////////////////
-    async function makeRequestProductos(){
-      let response = await fetch('http://demo6292426.mockable.io/products');
-      let dataProducto = await response.json();
-      console.log(dataProducto);
-      return dataProducto;
-    } 
-///////////////////////////////////////////////////////
-  setTimeout(() => {
-    mostrarProducto()
-  }, 2);
-
-    function mostrarProducto(dataProducto) {
-      makeRequestProductos().then(dataProducto => {
-        Object.values(dataProducto).forEach(
-        key => {
-          const parrafoDato = document.createTextNode(key.name + '  ' + key.price + '  ' + key.category + ' ' + key.guid);
-          const parrafo = document.createElement('div')
-          const botonCompra = document.createElement('button')
-          botonCompra.id = 'idBoton'
-          botonCompra.textContent = ' + '
-          parrafo.className = 'caja'
-          parrafo.id = 'pcaja'
-          parrafo.appendChild(parrafoDato)
-          parrafo.appendChild(botonCompra)
-          mostrarProductos.appendChild(parrafo)
-          botonCompra.addEventListener('click', añadirCarro)
-          botonCompra.setAttribute('marcadorId', key.guid + ' ' + key.price)
-        })
-      })
-    }
-    
-    
-
-    function añadirCarro(){
-      carro.push(this.getAttribute('marcadorId'))
-      pintarProduc(carro)
-    }
-
-    console.log(carro);
-
-    function pintarProduc(carro){
-      let pintar = document.getElementById('pintarProductos')
-      pintar.innerHTML = ""
-      Object.values(carro).forEach(
-        key => {
-          pintar.innerHTML += ` 
-          
-            <li>${key}</li>
-          
-          `
-        }
-      )
-       }
-    
-    
-    
-     
-    
-    
-    
-
-  </script>
+<section>
+  <div id="mostrarProductos"></div>
+</section>
+<script type="text/javascript" src="/script.js"></script>
 </body>
 </html>
